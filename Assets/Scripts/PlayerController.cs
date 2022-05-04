@@ -24,21 +24,22 @@ public class PlayerController : MonoBehaviour
     private float updateCameraOffsetZ = 0.3f;
     private float bagelRange = 0.3f;
     public bool isGameOver = false;
+   
+
 
 
     private void Start()
     {
-        
         cameraFollow = GameObject.Find("Main Camera").GetComponent<CameraFollow>();
         playerAudio = GetComponent<AudioSource>();
     }
 
 
 
+
     void FixedUpdate()
     {
-        Move();
-        
+        Move(); 
     }
 
 
