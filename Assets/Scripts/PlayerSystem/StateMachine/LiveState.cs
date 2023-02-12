@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
-
 public class LiveState : BasePlayer
 {
     public override void EnterState(Player player)
@@ -13,17 +8,11 @@ public class LiveState : BasePlayer
     {
         player.playerMovement.Move(player.playerInput.horizontalInput);
         player.playerMovement.RangeControll();
-
-        
     }
 
-    public override void ExitState(Player player)
+    protected override void ExitState(Player player)
     {
         player.ChangeState(player.deadState);
     }
-
     
-   
-
-   
 }

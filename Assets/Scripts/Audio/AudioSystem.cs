@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioSystem : MonoBehaviour
 {
     [SerializeField]
     private AudioSource audioSource;
+
+    [SerializeField] 
+    private AudioSource gameBackgroundSound;
 
     [SerializeField]
     private AudioClip bagelSound;
@@ -22,29 +23,33 @@ public class AudioSystem : MonoBehaviour
     private void OnEnable() => AddListeners();
 
     private void OnDisable() => RemoveListeners();
+    
+    private void StopBackgroundSound() => gameBackgroundSound.Stop();
 
-    public void PlayBagelSound() => audioSource.PlayOneShot(bagelSound);
+    private void PlayBagelSound() => audioSource.PlayOneShot(bagelSound);
 
-    public void PlayPositiveGateSound() => audioSource.PlayOneShot(positiveGateSound);
+    private void PlayPositiveGateSound() => audioSource.PlayOneShot(positiveGateSound);
 
-    public void PlayNegativeGateSound() => audioSource.PlayOneShot(negativeGateSound);
+    private void PlayNegativeGateSound() => audioSource.PlayOneShot(negativeGateSound);
 
-    public void PlayGameOverSound() => audioSource.PlayOneShot(gameOverSound);
+    private void PlayGameOverSound() => audioSource.PlayOneShot(gameOverSound);
 
-    public void AddListeners()
+    private void AddListeners()
     {
         GameEventsSystem.OnInteractionBagelSound += PlayBagelSound;
         GameEventsSystem.OnInteractionPositiveGateSound += PlayPositiveGateSound;
         GameEventsSystem.OnInteractionNegativeGateSound += PlayNegativeGateSound;
         GameEventsSystem.OnGameOverSound += PlayGameOverSound;
+        GameEventsSystem.OnDie += StopBackgroundSound;
     }
 
-    public void RemoveListeners()
+    private void RemoveListeners()
     {
         GameEventsSystem.OnInteractionBagelSound -= PlayBagelSound;
         GameEventsSystem.OnInteractionPositiveGateSound -= PlayPositiveGateSound;
         GameEventsSystem.OnInteractionNegativeGateSound -= PlayNegativeGateSound;
         GameEventsSystem.OnGameOverSound -= PlayGameOverSound;
+        GameEventsSystem.OnDie -= StopBackgroundSound;
     }
 
 

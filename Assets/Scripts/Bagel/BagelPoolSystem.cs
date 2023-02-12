@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BagelPoolSystem : MonoBehaviour
 {
-    public GameObject[] bagels;
+    [SerializeField]
+    private GameObject[] bagels;
 
     private void OnEnable() => AddListeners();
 
     private void OnDisable() => RemoveListeners();
 
-    public GameObject GetPooledObjectForActive()
+    private GameObject GetPooledObjectForActive()
     {
 
         for (int i = 0; i < bagels.Length; i++)
@@ -25,7 +24,7 @@ public class BagelPoolSystem : MonoBehaviour
 
     }
 
-    public GameObject GetPooledObjectForDeactive()
+    private GameObject GetPooledObjectForDeactive()
     {
 
         for (int i = bagels.Length-1; i >= 0; i--)

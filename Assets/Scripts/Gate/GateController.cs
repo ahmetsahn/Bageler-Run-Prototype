@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 
 public class GateController : MonoBehaviour,IInteractable
 {
     
-   [SerializeField] private enum GateType
-        {
-            PositiveGate,
-            NegativeGate
-        }
+   [SerializeField] 
+    private enum GateType
+    {
+        PositiveGate,
+        NegativeGate
+   }
 
-    [SerializeField] private TMP_Text gateText = null;
-    [SerializeField] private GateType gateType;
+    [SerializeField] 
+    private TMP_Text gateText = null;
+    [SerializeField] 
+    private GateType gateType;
     private int gateNumber;
 
     public int GetGateNumber()
@@ -67,7 +69,7 @@ public class GateController : MonoBehaviour,IInteractable
                     GameEventsSystem.LoadUpdateScoreInteractionGate(gateNumber);
                     GameEventsSystem.LoadInteractionNegativeGateSound();
                     GameEventsSystem.LoadDeactiveBagelFromPool(-gateNumber);
-                    GameEventsSystem.LoadSetCameraOffSet(-gateNumber);
+                    GameEventsSystem.LoadSetCameraOffSet(gateNumber);
                     GameEventsSystem.LoadPrintScore();
                 }
                 else
