@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentState = liveState;
+        currentState.EnterState(this);
     }
 
 

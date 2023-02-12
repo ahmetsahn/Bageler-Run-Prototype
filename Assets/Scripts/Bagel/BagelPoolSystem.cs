@@ -28,8 +28,9 @@ public class BagelPoolSystem : MonoBehaviour
     public GameObject GetPooledObjectForDeactive()
     {
 
-        for (int i = bagels.Length; i > 0; i--)
+        for (int i = bagels.Length-1; i >= 0; i--)
         {
+            
             if (bagels[i].activeSelf)
             {
                 return bagels[i];
@@ -44,6 +45,7 @@ public class BagelPoolSystem : MonoBehaviour
     {
         for (int i = 0; i < value; i++)
         {
+          
             GameObject obj = GetPooledObjectForActive();
             if (obj != null)
             {

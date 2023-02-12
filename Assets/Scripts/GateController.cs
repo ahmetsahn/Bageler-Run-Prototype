@@ -72,6 +72,7 @@ public class GateController : MonoBehaviour,IInteractable
                 }
                 else
                 {
+                    GameEventsSystem.LoadDie();
                     GameEventsSystem.LoadGameOverSound();
                     GameEventsSystem.LoadPrintScore();
                 }

@@ -11,6 +11,7 @@ public class GameEventsSystem : MonoBehaviour
     public static UnityAction OnInteractionPositiveGateSound;
     public static UnityAction OnInteractionNegativeGateSound;
     public static UnityAction OnGameOverSound;
+    public static UnityAction OnDie;
     public static UnityAction OnPrintScore;
     public static UnityAction<int> OnActiveBagelFromPool;
     public static UnityAction<int> OnDeactiveBagelFromPool;
@@ -66,6 +67,11 @@ public class GameEventsSystem : MonoBehaviour
     public static void LoadSetCameraOffSet(int value)
     {
         OnSetCameraOffSet?.Invoke(value);
+    }
+
+    public static void LoadDie()
+    {
+        OnDie?.Invoke();
     }
 
 }
