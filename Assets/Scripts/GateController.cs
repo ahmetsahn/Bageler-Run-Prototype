@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GateController : MonoBehaviour
+public class GateController : MonoBehaviour,IInteractable
 {
     
    [SerializeField] private enum GateType
@@ -14,8 +14,7 @@ public class GateController : MonoBehaviour
 
     [SerializeField] private TMP_Text gateText = null;
     [SerializeField] private GateType gateType;
-
-    [SerializeField] private int gateNumber = 0;
+    private int gateNumber;
 
     public int GetGateNumber()
     {
@@ -45,5 +44,41 @@ public class GateController : MonoBehaviour
     private void SetGateText()
     {
         gateText.text = gateNumber.ToString();
+    }
+
+    public void Interact()
+    {
+
+        switch (gateType)
+        {
+            case GateType.PositiveGate:
+                
+                GameEventsSystem.LoadUpdateScoreInteractionGate(gateNumber);
+                GameEventsSystem.LoadInteractionPositiveGateSound();
+                GameEventsSystem.LoadActiveBagelFromPool(gateNumber);
+                GameEventsSystem.LoadSetCameraOffSet(gateNumber);
+                GameEventsSystem.LoadPrintScore();
+                break;
+                
+            case GateType.NegativeGate:
+                
+                if (ScoreSystem.Instance.score >= -gateNumber)
+                {
+                    GameEventsSystem.LoadUpdateScoreInteractionGate(gateNumber);
+                    GameEventsSystem.LoadInteractionNegativeGateSound();
+                    GameEventsSystem.LoadDeactiveBagelFromPool(-gateNumber);
+                    GameEventsSystem.LoadSetCameraOffSet(-gateNumber);
+                    GameEventsSystem.LoadPrintScore();
+                }
+                else
+                {
+                    GameEventsSystem.LoadGameOverSound();
+                    GameEventsSystem.LoadPrintScore();
+                }
+              
+                
+                break;
+        }
+        
     }
 }
