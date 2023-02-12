@@ -14,14 +14,11 @@ public class GateController : MonoBehaviour,IInteractable
 
     [SerializeField] 
     private TMP_Text gateText = null;
+    
     [SerializeField] 
     private GateType gateType;
+    
     private int gateNumber;
-
-    public int GetGateNumber()
-    {
-        return gateNumber;
-    }
 
     private void Start()
     {
